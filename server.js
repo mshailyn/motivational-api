@@ -3,17 +3,17 @@ const express = require('express')
 const app = express()
 const PORT = 8000
 
-const phrase = {
+const motivationalPhrase = {
     'quote1': {
-        'quote': 'Today will be your day.',
+        'phrase': 'Today will be your day.',
         'type' : 'positive'
     }, 
     'quote2': {
-        'quote': 'You have the power to make a change in your life',
+        'phrase': 'You have the power to make a change in your life',
         'type' : 'inspirational'
     },
     'default': {
-        'quote': 'Today is a day',
+        'phrase': 'Today is a day',
         'type' : 'funny'
     }
 }
@@ -23,13 +23,13 @@ app.get('/',(req, res) =>{
 })
 app.get('/api:quote',(req,res) =>{
     const quoteNum = req.params.quote
-    if(phrase[quoteNum]){
-        res.json(phrase[quote])
+    if(motivationalPhrase[quoteNum]){
+        res.json(motivationalPhrase['phrase'])
     }else{
-        res.json(phrase['default'])
+        res.json(motivationalPhrase['default'])
     }
 })
 
-app.listen(PORT, ()=> {
+app.listen(process.env.PORT || PORT, ()=> {
     console.log(`The server is running on port ${PORT}.`)
 })
